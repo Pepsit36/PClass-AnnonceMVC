@@ -1,7 +1,6 @@
 <?php
 
-function findAll()
-{
+function findAll() {
     global $bdd;
 
     $resquest = $bdd->prepare('SELECT * FROM annonce');
@@ -16,8 +15,7 @@ function findAll()
     return $annonces;
 }
 
-function find($id)
-{
+function find($id) {
     global $bdd;
 
     $resquest = $bdd->prepare('SELECT * FROM annonce WHERE id=:id');
@@ -29,4 +27,16 @@ function find($id)
     $annonce['datePublication'] = new DateTime($annonce['datePublication']);
 
     return $annonce;
+}
+
+function add($titre, $contenu, $prix) {
+    global $bdd;
+
+    $resquest = $bdd->prepare('INSERT INTO annonce(titre, contenu, prix, datePublication) VALUES (:titre, :contenu, :prix, NOW())');
+    $resquest->bindParam(':titre', $titre, PDO::PARAM_STR);
+    $resquest->bindParam(':contenu', $contenu, PDO::PARAM_STR);
+    $resquest->bindParam(':prix', $prix, PDO::PARAM_INT);
+    $resquest->execute();
+
+    $resquest->execute();
 }

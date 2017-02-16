@@ -23,6 +23,10 @@
             <div class="panel panel-default">
                 <div class="panel-body">
                     <main>
+                        <div class="alert alert-success">
+                            <?= getFlash(); ?>
+                        </div>
+
                         <table class="table">
                             <thead>
                                 <tr>
@@ -48,6 +52,8 @@
                                 ?>
                             </tbody>
                         </table>
+
+                        <a href="?controlleur=Annonce&action=ajout">Ajouter une annonce</a>
                     </main>
                 </div>
             </div>
